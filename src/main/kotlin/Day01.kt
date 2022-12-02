@@ -2,16 +2,10 @@ class Day01(test: Boolean = false) : Day(test, 24000, 45000) {
     private val elves: List<List<Long>> = getElves()
 
     private fun getElves(): List<List<Long>> {
-        val mutableElves = mutableListOf<MutableList<Long>>()
-        mutableElves.add(mutableListOf())
-        for (bla in input) {
-            if (bla.isBlank()) {
-                mutableElves.add(mutableListOf())
-            } else {
-                mutableElves.last().add(bla.toLong())
-            }
-        }
-        return mutableElves
+        return input.joinToString(" ")
+            .split("  ")
+            .map { elven -> elven.split(" ")
+                .map { cal -> cal.toLong() } }
     }
     override fun part1(): Long {
         return elves.maxOf { it.sum() }
@@ -23,5 +17,5 @@ class Day01(test: Boolean = false) : Day(test, 24000, 45000) {
 }
 
 fun main() {
-    Day01(false).run()
+    Day01(true).run()
 }
