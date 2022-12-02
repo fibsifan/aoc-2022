@@ -17,5 +17,5 @@ class Day01(test: Boolean = false) : Day(test, 24000, 45000) {
 }
 
 fun main() {
-    Day01(true).run()
+    Day01().run()
 }
