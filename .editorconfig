@@ -1,0 +1,16 @@
+root = true
+
+[*]
+indent_style = space
+indent_size = 4
+charset = utf-8
+end_of_line = lf
+max_line_length = 120
+trim_trailing_whitespace = true
+insert_final_newline = true
+tab_width = 4
+
+ij_any_block_brace_style = end_of_line
+ij_any_class_brace_style = end_of_line
+ij_any_lambda_brace_style = end_of_line
+ij_any_method_brace_style = end_of_line
