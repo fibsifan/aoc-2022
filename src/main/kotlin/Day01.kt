@@ -4,15 +4,18 @@ class Day01(test: Boolean = false) : Day(test, 24000, 45000) {
     private fun getElves(): List<List<Long>> {
         return input.joinToString(" ")
             .split("  ")
-            .map { elven -> elven.split(" ")
-                .map { cal -> cal.toLong() } }
+            .map { elven ->
+                elven.split(" ")
+                    .map { cal -> cal.toLong() }
+            }
     }
+
     override fun part1(): Long {
         return elves.maxOf { it.sum() }
     }
 
     override fun part2(): Long {
-        return elves.sortedBy { it.sum() }.reversed().subList(0,3).sumOf { it.sum() }
+        return elves.sortedBy { it.sum() }.reversed().subList(0, 3).sumOf { it.sum() }
     }
 }
 

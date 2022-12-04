@@ -1,7 +1,9 @@
-class Day02(test: Boolean = false): Day(test, 15, 12) {
-    private val games: List<Pair<Played, ToPlay>> = input.map {parseGame(it) }
+class Day02(test: Boolean = false) : Day(test, 15, 12) {
+    private val games: List<Pair<Played, ToPlay>> = input.map { parseGame(it) }
 
-    private fun parseGame(it: String) = Pair(Played.valueOf(it.substringBefore(" ")), ToPlay.valueOf(it.substringAfter(" ")))
+    private fun parseGame(it: String) =
+        Pair(Played.valueOf(it.substringBefore(" ")), ToPlay.valueOf(it.substringAfter(" ")))
+
     override fun part1(): Long {
         return games.sumOf { evaluateGame(it.first, it.second) }
     }
@@ -18,13 +20,13 @@ class Day02(test: Boolean = false): Day(test, 15, 12) {
         return games.sumOf { anticipateGame(it.first, it.second) }
     }
 
-    private fun anticipateGame(played: Played, toPlay: ToPlay):Long {
+    private fun anticipateGame(played: Played, toPlay: ToPlay): Long {
         return toPlay.ordinal.toLong() * 3 + selectSign(played, toPlay)
     }
 
     private fun selectSign(played: Played, toPlay: ToPlay): Long {
-        return when(toPlay) {
-            ToPlay.X -> (played.ordinal.toLong() +2 ) % 3 + 1
+        return when (toPlay) {
+            ToPlay.X -> (played.ordinal.toLong() + 2) % 3 + 1
             ToPlay.Y -> played.ordinal.toLong() + 1
             ToPlay.Z -> (played.ordinal.toLong() + 1) % 3 + 1
         }
