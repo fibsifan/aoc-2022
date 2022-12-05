@@ -1,4 +1,4 @@
-class Day02(test: Boolean = false) : Day(test, 15, 12) {
+class Day02(test: Boolean = false) : Day<Long>(test, 15, 12) {
     private val games: List<Pair<Played, ToPlay>> = input.map { parseGame(it) }
 
     private fun parseGame(it: String) =

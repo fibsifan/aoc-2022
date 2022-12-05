@@ -1,4 +1,4 @@
-class Day01(test: Boolean = false) : Day(test, 24000, 45000) {
+class Day01(test: Boolean = false) : Day<Long>(test, 24000, 45000) {
     private val elves: List<List<Long>> = getElves()
 
     private fun getElves(): List<List<Long>> {

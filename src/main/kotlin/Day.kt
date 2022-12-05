@@ -1,17 +1,17 @@
 import java.io.File
 
-abstract class Day(
+abstract class Day<T>(
     private val test: Boolean = false,
-    private val expected1: Long = 0,
-    private val expected2: Long = 0) {
+    private val expected1: T,
+    private val expected2: T) {
 
     val input: List<String> = File(
         "src/${if (test) "test" else "main"}/resources",
         "${this::class.simpleName}${if (test) "_test" else ""}.txt"
     ).readLines()
 
-    abstract fun part1(): Long
-    abstract fun part2(): Long
+    abstract fun part1(): T
+    abstract fun part2(): T
     fun run() {
         val part1 = part1()
         println(part1)

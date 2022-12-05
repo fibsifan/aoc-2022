@@ -1,4 +1,4 @@
-class Day04(test: Boolean = false) : Day(test, 2, 4) {
+class Day04(test: Boolean = false) : Day<Long>(test, 2, 4) {
     private val sectionPairs = input
         .map { line ->
             val matchGroups = Regex("(\\d+)-(\\d+),(\\d+)-(\\d+)").matchEntire(line)!!.groups
