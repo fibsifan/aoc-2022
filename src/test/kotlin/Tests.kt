@@ -25,4 +25,9 @@ class Tests {
     fun day05() {
         Day05(true).run()
     }
+
+    @Test
+    fun day06() {
+        Day06(true).run()
+    }
 }
