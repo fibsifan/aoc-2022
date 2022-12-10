@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 
 class Tests {
@@ -39,5 +40,16 @@ class Tests {
     @Test
     fun day08() {
         Day08(true).run()
+    }
+
+    @Test
+    @Disabled("Not yet implemented")
+    fun day09() {
+        Day09(true).run()
+    }
+
+    @Test
+    fun day10() {
+        Day10(true).run()
     }
 }
