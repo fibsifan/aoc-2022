@@ -9,14 +9,14 @@ class Day11(test: Boolean = false) : Day<Long>(test, 10605L, 2713310158L) {
     private val inspectionCounters = MutableList(monkeys.size) { 0L }
 
     private fun parseMonkey(monkeyData: List<String>): Monkey {
-        val items = monkeyData[1].split(": ")[1].split(", ").map { it.toInt() }.toMutableList()
+        val items = monkeyData[1].split(": ")[1].split(", ").map { it.toLong() }.toMutableList()
 
         val operationData = monkeyData[2].split(" = old ")[1]
         val operand = operationData.substringAfterLast(" ")
         val operation = if (operationData.startsWith("+"))
-            fun (old: Int): Int {return old + if (operand=="old") old else operand.toInt()}
-        else fun(old: Int): Int {return old * if (operand=="old") old else operand.toInt()}
-        val divisor = monkeyData[3].substringAfterLast(" ").toInt()
+            fun (old: Long): Long {return old + if (operand=="old") old else operand.toLong()}
+        else fun(old: Long): Long {return old * if (operand=="old") old else operand.toLong()}
+        val divisor = monkeyData[3].substringAfterLast(" ").toLong()
         val targetIfDivisible = monkeyData[4].substringAfterLast(" ").toInt()
         val targetIfNotDivisible = monkeyData[5].substringAfterLast(" ").toInt()
         return Monkey(items, operation, divisor, Pair(targetIfDivisible, targetIfNotDivisible))
@@ -38,7 +38,8 @@ class Day11(test: Boolean = false) : Day<Long>(test, 10605L, 2713310158L) {
         for (i in 1..10000) {
             monkeys2.forEachIndexed { index, monkey ->
                 inspectionCounters2[index] += monkey.items.size.toLong()
-                monkey.turn(monkeys2, monkeys2.map { it.divisor }.reduce {a, b -> a*b})
+                val modulus = monkeys2.map { it.divisor }.reduce { a, b -> a * b }
+                monkey.turn(monkeys2, modulus)
             }
         }
         inspectionCounters2.sortDescending()
@@ -47,13 +48,13 @@ class Day11(test: Boolean = false) : Day<Long>(test, 10605L, 2713310158L) {
 }
 
 class Monkey(
-    val items: MutableList<Int>,
-    private val operation: (old: Int) -> Int,
-    val divisor: Int,
+    val items: MutableList<Long>,
+    private val operation: (old: Long) -> Long,
+    val divisor: Long,
     private val targets: Pair<Int, Int>,
     var round2: Boolean = false
 ) {
-    fun turn(monkeys: List<Monkey>, modulus: Int) {
+    fun turn(monkeys: List<Monkey>, modulus: Long) {
         while (items.isNotEmpty()) {
             val item = items.removeFirst()
             val target = inspect(item, modulus)
@@ -61,13 +62,13 @@ class Monkey(
         }
     }
 
-    private fun inspect(item: Int, modulus: Int): Pair<Int, Int> {
+    private fun inspect(item: Long, modulus: Long): Pair<Int, Long> {
         val newWorryLevel = if (round2) operation(item)%modulus else operation(item)/3
         return Pair(targetMonkey(newWorryLevel), newWorryLevel)
     }
 
-    private fun targetMonkey(newWorryLevel: Int): Int {
-        return if (newWorryLevel % divisor == 0) targets.first else targets.second
+    private fun targetMonkey(newWorryLevel: Long): Int {
+        return if (newWorryLevel % divisor == 0L) targets.first else targets.second
     }
 }
 
