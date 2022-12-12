@@ -1,4 +1,3 @@
-import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 
 class Tests {
@@ -58,7 +57,6 @@ class Tests {
     }
 
     @Test
-    @Disabled
     fun day12() {
         Day12(true).run()
     }
