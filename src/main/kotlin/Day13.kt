@@ -1,6 +1,6 @@
 import kotlin.math.min
 
-class Day13(test: Boolean = false) : Day<Int>(test, 13, 0) {
+class Day13(test: Boolean = false) : Day<Int>(test, 13, 140) {
     private val pairs = input.chunked(3).map {Pair(parsePacket(it[0]), parsePacket(it[1])) }
 
     private fun parsePacket(packetString: String): Packet {
@@ -45,7 +45,18 @@ class Day13(test: Boolean = false) : Day<Int>(test, 13, 0) {
     }
 
     override fun part2(): Int {
-        TODO("Not yet implemented")
+        val divider1 = ListPacket(listOf(ListPacket(listOf(NumberPacket(2)))))
+        val divider2 = ListPacket(listOf(ListPacket(listOf(NumberPacket(6)))))
+        val sortedList = pairs.flatMap { it.toList() }.sorted()
+        val indexDivider1 = sortedList.windowed(2, 1)
+            .mapIndexed { index, packets -> Pair(index, packets) }
+            .first { (_, packets) -> packets[0] < divider1 && packets[1] > divider1 }
+            .first + 2 // 1-indexing + windowed "loss"
+        val indexDivider2 = sortedList.windowed(2, 1)
+            .mapIndexed { index, packets -> Pair(index, packets) }
+            .first { (_, packets) -> packets[0] < divider2 && packets[1] > divider2 }
+            .first + 3 // 1-indexing + windowed "loss" + indexDivider1
+        return indexDivider2 * indexDivider1
     }
 }
 
@@ -65,6 +76,10 @@ class ListPacket(val packets: List<Packet>): Packet() {
             return compareTo(ListPacket(listOf(other)))
         }
     }
+
+    override fun toString(): String {
+        return packets.joinToString(",", "[", "]")
+    }
 }
 
 class NumberPacket(val value: Int): Packet() {
@@ -74,6 +89,10 @@ class NumberPacket(val value: Int): Packet() {
         } else {
             ListPacket(listOf(this)).compareTo(other)
         }
+    }
+
+    override fun toString(): String {
+        return value.toString()
     }
 }
 
