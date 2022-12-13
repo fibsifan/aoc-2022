@@ -59,16 +59,13 @@ sealed class Packet: Comparable<Packet>
 
 class ListPacket(val packets: List<Packet>): Packet() {
     override fun compareTo(other: Packet): Int {
-        if (other is ListPacket) {
-            for (i in 0 until min(packets.size, other.packets.size)) {
-                val componentComparison = packets[i].compareTo(other.packets[i])
-                if (componentComparison != 0) {
-                    return componentComparison
-                }
-            }
-            return packets.size.compareTo(other.packets.size)
+        return if (other is ListPacket) {
+            val foundPair = (0 until min(packets.size, other.packets.size))
+                .map { Pair(packets[it], other.packets[it]) }
+                .firstOrNull { (a, b) -> a.compareTo(b) != 0 }
+            foundPair?.first?.compareTo(foundPair.second) ?: packets.size.compareTo(other.packets.size)
         } else {
-            return compareTo(ListPacket(listOf(other)))
+            compareTo(ListPacket(listOf(other)))
         }
     }
 
