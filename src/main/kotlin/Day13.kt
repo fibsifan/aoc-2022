@@ -1,5 +1,3 @@
-import kotlin.math.min
-
 class Day13(test: Boolean = false) : Day<Int>(test, 13, 140) {
     private val pairs = input.chunked(3).map {Pair(parsePacket(it[0]), parsePacket(it[1])) }
 
@@ -60,8 +58,7 @@ sealed class Packet: Comparable<Packet>
 class ListPacket(val packets: List<Packet>): Packet() {
     override fun compareTo(other: Packet): Int {
         return if (other is ListPacket) {
-            val foundPair = (0 until min(packets.size, other.packets.size))
-                .map { Pair(packets[it], other.packets[it]) }
+            val foundPair = packets.zip(other.packets)
                 .firstOrNull { (a, b) -> a.compareTo(b) != 0 }
             foundPair?.first?.compareTo(foundPair.second) ?: packets.size.compareTo(other.packets.size)
         } else {
