@@ -16,16 +16,21 @@ class Day13(test: Boolean = false) : Day<Int>(test, 13, 0) {
                 val parent = context.lastOrNull()
                 if (parent != null) {
                     parent.add(finishedList)
+                    workingString = workingString.substring(1)
                 } else {
                     return finishedList
                 }
             } else if (workingString.startsWith(",")) {
                 workingString = workingString.substring(1)
-            } else if (workingString matches "^\\d.*".toRegex()) {
-                context.last().add(NumberPacket(workingString.substring(0,1).toInt()))
-                workingString = workingString.substring(1)
             } else {
-                error("Unexpected input $workingString")
+                val numberRegex = "^(\\d+).*".toRegex()
+                if (workingString matches numberRegex) {
+                    val numberString = numberRegex.find(workingString)!!.groups[1]!!.value
+                    context.last().add(NumberPacket(numberString.toInt()))
+                    workingString = workingString.substring(numberString.length)
+                } else {
+                    error("Unexpected input $workingString")
+                }
             }
         }
         error("Should have returned in while loop")
@@ -36,7 +41,7 @@ class Day13(test: Boolean = false) : Day<Int>(test, 13, 0) {
             .filter { (_, pair) ->
                 pair.first <= pair.second
             }
-            .sumOf {(index, _) -> index+1}
+            .sumOf { (index, _) -> index+1 }
     }
 
     override fun part2(): Int {
