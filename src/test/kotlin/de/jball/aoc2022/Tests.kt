@@ -14,6 +14,7 @@ import de.jball.aoc2022.day11.Day11
 import de.jball.aoc2022.day12.Day12
 import de.jball.aoc2022.day13.Day13
 import de.jball.aoc2022.day14.Day14
+import de.jball.aoc2022.day15.Day15
 
 import kotlin.test.Test
 
@@ -86,5 +87,10 @@ class Tests {
     @Test
     fun day14() {
         Day14(true).run()
+    }
+
+    @Test
+    fun day15() {
+        Day15(true).run()
     }
 }
