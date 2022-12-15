@@ -15,7 +15,7 @@ import de.jball.aoc2022.day12.Day12
 import de.jball.aoc2022.day13.Day13
 import de.jball.aoc2022.day14.Day14
 
-import org.junit.jupiter.api.Test
+import kotlin.test.Test
 
 class Tests {
     @Test
