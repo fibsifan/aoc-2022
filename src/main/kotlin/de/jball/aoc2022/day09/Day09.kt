@@ -1,3 +1,6 @@
+package de.jball.aoc2022.day09
+
+import de.jball.aoc2022.Day
 import kotlin.math.abs
 import kotlin.math.sign
 

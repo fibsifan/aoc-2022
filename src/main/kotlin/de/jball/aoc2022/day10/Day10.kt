@@ -1,3 +1,6 @@
+package de.jball.aoc2022.day10
+
+import de.jball.aoc2022.Day
 
 class Day10(test: Boolean = false): Day<Int>(test, 13140, 1 /*cheating here...*/) {
     private val program = input.map { parseCommand(it) }

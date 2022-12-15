@@ -1,3 +1,6 @@
+package de.jball.aoc2022.day08
+
+import de.jball.aoc2022.Day
 import kotlin.math.max
 
 class Day08(test: Boolean = false) : Day<Int>(test, 21, 8) {

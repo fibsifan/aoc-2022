@@ -1,3 +1,7 @@
+package de.jball.aoc2022.day04
+
+import de.jball.aoc2022.Day
+
 class Day04(test: Boolean = false) : Day<Long>(test, 2, 4) {
     private val sectionPairs = input
         .map { line ->

@@ -1,3 +1,4 @@
+package de.jball.aoc2022
 import java.io.File
 
 abstract class Day<T>(

@@ -1,3 +1,6 @@
+package de.jball.aoc2022.day14
+
+import de.jball.aoc2022.Day
 import kotlin.math.abs
 
 class Day14(test: Boolean = false): Day<Int>(test, 24, 93) {
@@ -63,11 +66,11 @@ class Point(val x: Int, val y: Int) {
         return if (x == other.x) {
             List(abs(other.y-y) + 1) { x }
                 .zip(if(y < other.y) y..other.y else y downTo other.y)
-                .map {(a, b) -> Point(a, b)}
+                .map {(a, b) -> Point(a, b) }
         } else if (y == other.y) {
             (if(x < other.x) x..other.x else x downTo other.x)
                 .zip(List(abs(other.x - x) + 1) { y })
-                .map {(a, b) -> Point(a, b)}
+                .map {(a, b) -> Point(a, b) }
         } else {
             error("range from $this to $other is not horizontally or vertically.")
         }

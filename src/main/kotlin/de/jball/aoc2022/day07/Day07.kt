@@ -1,3 +1,7 @@
+package de.jball.aoc2022.day07
+
+import de.jball.aoc2022.Day
+
 class Day07(test: Boolean = false): Day<Long>(test, 95437, 24933642) {
     private val rootDir = Directory(mutableMapOf())
     private val allDirs = mutableMapOf<String, Directory>()
@@ -21,7 +25,7 @@ class Day07(test: Boolean = false): Day<Long>(test, 95437, 24933642) {
                     } else {
                         val oldDirectory = allDirs[currentPath]
                         currentPath += if (suffix != "/") "${suffix}/" else suffix
-                        currentDirectory = allDirs.computeIfAbsent(currentPath) { Directory(mutableMapOf())}
+                        currentDirectory = allDirs.computeIfAbsent(currentPath) { Directory(mutableMapOf()) }
                         oldDirectory?.contents?.put(suffix, currentDirectory)
                     }
                 } else if (!line.startsWith("dir")) {

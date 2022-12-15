@@ -1,3 +1,6 @@
+package de.jball.aoc2022.day12
+
+import de.jball.aoc2022.Day
 import java.util.PriorityQueue
 
 class Day12(test: Boolean = false): Day<Long>(test, 31, 29) {

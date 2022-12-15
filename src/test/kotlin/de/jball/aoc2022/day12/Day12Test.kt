@@ -1,3 +1,5 @@
+package de.jball.aoc2022.day12
+
 import org.junit.jupiter.api.Test
 import kotlin.test.junit5.JUnit5Asserter.assertEquals
 
