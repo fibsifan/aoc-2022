@@ -7,7 +7,7 @@ class Day16(test: Boolean = false): Day<Int>(test, 1651, 0) {
     private val valves = input
         .map { line -> parseValve(line) }
         .associateBy { valve -> valve.name }
-    private val start = parseValve(input[0])
+    private val start = valves["AA"]!!
     private val valvesWithImpact = valves
         .filter { (_, valve) -> valve.flowRate > 0 }
         .map { (name, valve) -> Pair(name, valve.flowRate) }
