@@ -1,3 +1,7 @@
+# Archived 2023-10-14
+
+Further solutions will be added in [fibsifan/aoc](https://github.com/fibsifan/aoc) (if at all).
+
 # aoc-2022
 
 Welcome to the Advent of Code[^aoc] Kotlin project created by [fibsifan][github] using the [Advent of Code Kotlin Template][template] delivered by JetBrains.
